@@ -6,66 +6,18 @@
  * };
  */
 bool hasCycle(struct ListNode *head) {
-    struct ListNode *slow = head;
-    struct ListNode *fast = head;
-
-    if (!head)
-        {
-        return (0);
+    if(head == NULL || head->next == NULL)
+            return false;
+    struct ListNode* slow=head;
+    struct ListNode* fast=head;
+    while(fast!=NULL && slow!=NULL){
+        fast=fast->next;
+        if(fast!=NULL)
+            fast=fast->next;
+        slow=slow->next;
+        if(slow == fast){
+            return true;
         }
-
-    if (slow->next)
-        {
-        slow = slow->next;
-        }
-    else
-        {
-        return (0);
-        }
-
-    if (fast->next)
-        {
-        if (fast->next->next)
-            {
-            fast = fast->next->next;
-            }
-        else
-            {
-            return (0);
-            }
-        }
-
-    while (true)
-        {
-        if (!fast)
-            {
-            return (0);
-            }
-
-        if (slow == fast)
-            {
-            return (1);
-            }
-        else
-            {
-            slow = slow->next;
-            if (fast->next)
-                {
-                if (fast->next->next)
-                    {
-                    fast = fast->next->next;
-                    }
-                else
-                    {
-                    return (0);
-                    }
-                }
-            else
-                {
-                return (0);
-                }
-            }
-        }
-
-    return (0);
+    }
+    return false;
 }
