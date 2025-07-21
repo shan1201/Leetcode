@@ -1,0 +1,33 @@
+class Solution {
+    public String reverseStr(String s, int k) {
+        // Convert the input string 's' into a character array for in-place manipulation
+        char[] charArray = s.toCharArray();
+      
+        // Iterate over the array in blocks of size 2k
+        for (int startIndex = 0; startIndex < charArray.length; startIndex += (k * 2)) {
+            // Initialize 'endIndex' to the minimum of the last index of the block or the end of the array
+            int endIndex = Math.min(charArray.length - 1, startIndex + k - 1);
+          
+            // Reverse the characters in the current block from 'startIndex' to 'endIndex'
+            reverseCharacters(charArray, startIndex, endIndex);
+        }
+      
+        // Convert the reversed character array back to a string and return it
+        return new String(charArray);
+    }
+  
+    // Helper method to reverse a portion of the character array in place
+    private void reverseCharacters(char[] charArray, int startIndex, int endIndex) {
+        // Use two pointers to reverse the characters in the array
+        while (startIndex < endIndex) {
+            // Swap characters at 'startIndex' and 'endIndex'
+            char temp = charArray[startIndex];
+            charArray[startIndex] = charArray[endIndex];
+            charArray[endIndex] = temp;
+          
+            // Move the pointers closer to the middle of the array
+            startIndex++;
+            endIndex--;
+        }
+    }
+}
