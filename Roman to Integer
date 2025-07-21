@@ -1,0 +1,41 @@
+class Solution {
+    public int romanToInt(String s) {
+        int n=s.length();
+        List<Integer> r= new ArrayList<>();
+        for(int i=0; i<n; i++){
+            char c=s.charAt(i);
+            switch(c){
+                case 'I':
+                r.add(1);
+                break;
+                case 'V':
+                r.add(5);
+                break;
+                case 'X':
+                r.add(10);
+                break;
+                case 'L':
+                r.add(50);
+                break;
+                case 'C':
+                r.add(100);
+                break;
+                case 'D':
+                r.add(500);
+                break;
+                case 'M':
+                r.add(1000);
+                break;
+            }
+        }
+        int sum=0;
+        for(int i=0; i<n-1; i++){
+            if(r.get(i)>=r.get(i+1)){
+                sum+=r.get(i);
+            }else{
+                sum-=r.get(i);
+            }
+        }
+        return sum+r.get(n-1);
+    }
+}
